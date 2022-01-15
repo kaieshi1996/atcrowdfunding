@@ -53,12 +53,59 @@
                     }
                 });
             });
+
+            $("#btn03").click(function (){
+                // 准备要发送的数据
+                var student = {
+                    stuId: 5,
+                    stuNmae: "tom",
+                    address: {
+                        province: "江苏",
+                        city: "南京",
+                        street: "秣陵街道"
+                    },
+                    subjectList: [
+                        {
+                            subName: "java",
+                            subScore: 100
+                        },
+                        {
+                            subName: "c++",
+                            subScore: 98
+                        }
+                    ],
+                    map:{
+                        key1: "value1",
+                        key2: "value2"
+                    }
+                };
+                // 将JSON对象转换为JSON字符串
+                var requestBody = JSON.stringify(student);
+
+                // 发送Ajax请求
+                $.ajax({
+                    url: "send/compose/object.do",
+                    type: "post",
+                    data: requestBody,
+                    contentType: "application/json;character=UTF-8",
+                    dataType: "text",
+                    success: function (resp){
+                        alert(resp);
+                    },
+                    error: function (resp) {
+                        alert(resp)
+                    }
+                })
+            })
+
         })
+
     </script>
 </head>
 
 <body>
 <a href="test/ssm.html">测试</a>
 <button id="btn01">Send text</button>
+<button id="btn03">Send Object</button>
 </body>
 </html>
