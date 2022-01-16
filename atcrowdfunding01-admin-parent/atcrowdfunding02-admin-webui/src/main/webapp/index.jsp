@@ -10,6 +10,7 @@
 <head>
     <title>测试页面</title>
     <script type="text/javascript" src="jquery/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="layer/layer.js"></script>
     <base href="http://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}/">
 <%--    <script type="text/javascript">--%>
 <%--        $(function (){--%>
@@ -33,6 +34,9 @@
 <%--    </script>--%>
     <script type="text/javascript">
         $(function (){
+            $("#btn04").click(function (){
+                layer.msg("layer的弹框");
+            });
             $("#btn01").click(function (){
                 // 准备好要发送到服务端的数组
                 var array = [5,8,12];
@@ -107,5 +111,7 @@
 <a href="test/ssm.html">测试</a>
 <button id="btn01">Send text</button>
 <button id="btn03">Send Object</button>
+<button id="btn04">layer</button>
+
 </body>
 </html>

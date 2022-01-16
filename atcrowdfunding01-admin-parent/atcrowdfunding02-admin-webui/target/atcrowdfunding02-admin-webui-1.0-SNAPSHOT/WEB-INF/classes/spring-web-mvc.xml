@@ -27,9 +27,12 @@
             </props>
             
         </property>
-        <property name="exceptionAttribute" value="ex"></property>
+        <property name="exceptionAttribute" value="exception"></property>
     </bean>
 
+    <!--配置view-controller，直接把请求地址和视图名称关联起来，从而无需写handler方法-->
+    <mvc:view-controller path="/admin/to/login.do" view-name="admin-login"/>
+    <mvc:default-servlet-handler/>
 
 
 </beans>
