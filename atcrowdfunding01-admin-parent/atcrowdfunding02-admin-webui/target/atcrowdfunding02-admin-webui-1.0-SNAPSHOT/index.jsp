@@ -88,7 +88,7 @@
                     type: "post",
                     data: requestBody,
                     contentType: "application/json;character=UTF-8",
-                    dataType: "text",
+                    dataType: "json",
                     success: function (resp){
                         alert(resp);
                     },
