@@ -1,5 +1,6 @@
 package com.atguigu.crowd.mvc.config;
 
+import com.atguigu.crowd.exception.LoginFailedException;
 import com.atguigu.crowd.util.CrowdConstant;
 import com.atguigu.crowd.util.CrowdUtil;
 import com.atguigu.crowd.util.ResultEntity;
@@ -20,6 +21,12 @@ public class CrowdExceptionResolver {
 
         String viewName = "system-error";
         return commonResolve(viewName, exception, request, response);
+    }
+
+    @ExceptionHandler(value = LoginFailedException.class)
+    public ModelAndView resolveLoginFailedException(LoginFailedException exception, HttpServletRequest request, HttpServletResponse response) throws IOException{
+        String viewName = "admin-login";
+        return commonResolve(viewName,exception,request,response);
     }
 
 

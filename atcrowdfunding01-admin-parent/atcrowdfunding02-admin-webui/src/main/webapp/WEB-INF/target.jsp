@@ -13,7 +13,7 @@
 <body>
 
 <h1>Success</h1>
-${requestScope.adminList}
+<%--${requestScope.adminList}--%>
 
 </body>
 </html>
