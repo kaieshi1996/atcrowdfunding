@@ -1,10 +1,10 @@
 package com.atguigu.crowd.mapper;
 
-import java.util.List;
-
 import com.atguigu.crowd.entity.Admin;
 import com.atguigu.crowd.entity.AdminExample;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface AdminMapper {
     long countByExample(AdminExample example);

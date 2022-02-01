@@ -35,7 +35,7 @@ public class AdminServiceImpl implements AdminService {
     public Admin getAdminByLoginAcct(String loginAcct,String userPswd) {
         AdminExample adminExample = new AdminExample();
         AdminExample.Criteria criteria = adminExample.createCriteria();
-        criteria.andLoginEqualTo(loginAcct);
+        criteria.andLoginAcctEqualTo(loginAcct);
         List<Admin> list = adminMapper.selectByExample(adminExample);
         if(list == null || list.size() == 0){
             throw new LoginFailedException(CrowdConstant.MESSAGE_LOGIN_FAILED);
@@ -48,7 +48,10 @@ public class AdminServiceImpl implements AdminService {
             throw new LoginFailedException(CrowdConstant.MESSAGE_LOGIN_FAILED);
         }
         String userPswdDB = admin.getUserPswd();
-        String userPswdForm = CrowdUtil.md5(userPswdDB);
+        String userPswdForm = CrowdUtil.md5(userPswd);
+
+        System.out.println(userPswdDB);
+        System.out.println(userPswdForm);
 
         if(!Objects.equals(userPswdDB, userPswdForm)){
             throw new LoginFailedException(CrowdConstant.MESSAGE_LOGIN_FAILED);

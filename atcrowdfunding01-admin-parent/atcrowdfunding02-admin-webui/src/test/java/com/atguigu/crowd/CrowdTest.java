@@ -5,7 +5,6 @@ import com.atguigu.crowd.mapper.AdminMapper;
 import com.atguigu.crowd.service.AdminService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 
 import javax.sql.DataSource;
