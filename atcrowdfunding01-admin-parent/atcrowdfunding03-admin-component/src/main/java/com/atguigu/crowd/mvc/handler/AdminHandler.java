@@ -21,9 +21,15 @@ public class AdminHandler {
     public String doLogin(@RequestParam("loginAcct") String loginAcct, @RequestParam("userPswd") String userPswd, HttpSession session){
         Admin admin = adminService.getAdminByLoginAcct(loginAcct,userPswd);
 
-        session.setAttribute(CrowdConstant.ATTR_NAME_EXCEPTION,admin);
+        session.setAttribute(CrowdConstant.ATTR_NAME_LOGIN_ADMIN,admin);
 
-        return "admin-main";
+        return "redirect:/admin/to/main.do";
+    }
+
+    @RequestMapping("/admin/do/logout.do")
+    public String doLogout(HttpSession session){
+        session.invalidate();
+        return "redirect:/admin/to/login.do";
     }
 
 
