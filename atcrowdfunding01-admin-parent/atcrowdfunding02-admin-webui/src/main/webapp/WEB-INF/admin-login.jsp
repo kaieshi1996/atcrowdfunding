@@ -6,7 +6,6 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -37,9 +36,9 @@
 
     <form action="admin/do/login.do" method="post" class="form-signin" role="form">
         <h2 class="form-signin-heading"><i class="glyphicon glyphicon-log-in"></i>管理员登录</h2>
-        <p>${requestScope.exception.message}</p>
+        <p>${requestScope.exception.message }</p>
         <div class="form-group has-success has-feedback">
-            <input type="text" name = "loginAcct" class="form-control" id="inputSuccess4" placeholder="请输入登录账号" autofocus>
+            <input type="text" name = "loginAcct"  class="form-control" id="inputSuccess4" placeholder="请输入登录账号" autofocus>
             <span class="glyphicon glyphicon-user form-control-feedback"></span>
         </div>
         <div class="form-group has-success has-feedback">

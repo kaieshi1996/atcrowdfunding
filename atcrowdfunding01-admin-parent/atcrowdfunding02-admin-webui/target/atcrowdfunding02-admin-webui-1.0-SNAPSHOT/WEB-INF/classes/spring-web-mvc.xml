@@ -24,6 +24,7 @@
             <props>
                 <!-- key属性指定异常全类名，标签体中指定对应的视图(前后缀拼接) -->
                 <prop key="java.lang.Exception">system-error</prop>
+                <prop key="com.atguigu.crowd.exception.AccessForbiddenException">admin-login</prop>
             </props>
             
         </property>
@@ -33,6 +34,25 @@
     <!--配置view-controller，直接把请求地址和视图名称关联起来，从而无需写handler方法-->
     <mvc:view-controller path="/admin/to/login.do" view-name="admin-login"/>
     <mvc:view-controller path="/admin/to/main.do" view-name="admin-main"/>
+
+    
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <mvc:exclude-mapping path="/admin/to/login.do"/>
+            <mvc:exclude-mapping path="/admin/do/login.do"/>
+            <mvc:exclude-mapping path="/admin/do/logout.do"/>
+            <mvc:exclude-mapping path="/**/fonts/*"/>
+            <mvc:exclude-mapping path="/**/*.css"/>
+            <mvc:exclude-mapping path="/**/*.js"/>
+            <mvc:exclude-mapping path="/**/*.png"/>
+            <mvc:exclude-mapping path="/**/*.gif"/>
+            <mvc:exclude-mapping path="/**/*.jpg"/>
+            <mvc:exclude-mapping path="/**/*.jpeg"/>
+            <bean class="com.atguigu.crowd.mvc.interceptor.LoginInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
+
     <mvc:default-servlet-handler/>
 
 

@@ -1,5 +1,6 @@
 package com.atguigu.crowd.mvc.config;
 
+import com.atguigu.crowd.exception.AccessForbiddenException;
 import com.atguigu.crowd.exception.LoginFailedException;
 import com.atguigu.crowd.util.CrowdConstant;
 import com.atguigu.crowd.util.CrowdUtil;
@@ -7,6 +8,7 @@ import com.atguigu.crowd.util.ResultEntity;
 import com.google.gson.Gson;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -25,6 +27,12 @@ public class CrowdExceptionResolver {
 
     @ExceptionHandler(value = LoginFailedException.class)
     public ModelAndView resolveLoginFailedException(LoginFailedException exception, HttpServletRequest request, HttpServletResponse response) throws IOException{
+        String viewName = "admin-login";
+        return commonResolve(viewName,exception,request,response);
+    }
+
+    @ExceptionHandler(value = AccessForbiddenException.class)
+    public ModelAndView resolveAccessForbiddenException(LoginFailedException exception, HttpServletRequest request, HttpServletResponse response) throws IOException{
         String viewName = "admin-login";
         return commonResolve(viewName,exception,request,response);
     }
