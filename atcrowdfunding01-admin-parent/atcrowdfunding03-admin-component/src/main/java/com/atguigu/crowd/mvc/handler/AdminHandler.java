@@ -8,6 +8,7 @@ import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -43,9 +44,28 @@ public class AdminHandler {
         PageInfo<Admin> pageInfo = adminService.getPageInfo(keyword, pageNum, pageSize);
         // 将PageInfo对象存入模型
         modelMap.addAttribute(CrowdConstant.ATTR_NAME_PAGE_INFO, pageInfo);
+        System.out.println(modelMap.getAttribute(CrowdConstant.ATTR_NAME_PAGE_INFO));
         return "admin-page";
 
     }
+
+    @RequestMapping("/admin//remove/{adminId}/{pageNum}/{keyword}.do")
+    public String remove(@PathVariable("adminId") Integer adminId,
+                         @PathVariable("pageNum") Integer pageNum,
+                         @PathVariable("keyword") String keyword) {
+        adminService.remove(adminId);
+
+        return "redirect:/admin/get/page.do?pageNum="+pageNum+"&keyword="+keyword;
+
+    }
+
+    @RequestMapping("/admin/save.do")
+    public String saveAdmin(Admin admin){
+        adminService.saveAdmin(admin);
+        return "redirect:/admin/get/page.do?pageNum="+Integer.MAX_VALUE;
+    }
+
+
 
 
 

@@ -1,6 +1,7 @@
 package com.atguigu.crowd.mvc.config;
 
 import com.atguigu.crowd.exception.AccessForbiddenException;
+import com.atguigu.crowd.exception.LoginAcctAlreadyInUseException;
 import com.atguigu.crowd.exception.LoginFailedException;
 import com.atguigu.crowd.util.CrowdConstant;
 import com.atguigu.crowd.util.CrowdUtil;
@@ -18,8 +19,8 @@ import java.io.IOException;
 @ControllerAdvice
 public class CrowdExceptionResolver {
 
-    @ExceptionHandler(value = Exception.class)
-    public ModelAndView resolveNullPointerException(Exception exception, HttpServletRequest request, HttpServletResponse response) throws IOException {
+    @ExceptionHandler(value = NullPointerException.class)
+    public ModelAndView resolveNullPointerException(NullPointerException exception, HttpServletRequest request, HttpServletResponse response) throws IOException {
 
         String viewName = "system-error";
         return commonResolve(viewName, exception, request, response);
@@ -32,9 +33,15 @@ public class CrowdExceptionResolver {
     }
 
     @ExceptionHandler(value = AccessForbiddenException.class)
-    public ModelAndView resolveAccessForbiddenException(LoginFailedException exception, HttpServletRequest request, HttpServletResponse response) throws IOException{
+    public ModelAndView resolveAccessForbiddenException(AccessForbiddenException exception, HttpServletRequest request, HttpServletResponse response) throws IOException{
         String viewName = "admin-login";
         return commonResolve(viewName,exception,request,response);
+    }
+
+    @ExceptionHandler(value = LoginAcctAlreadyInUseException.class)
+    public ModelAndView resolveLoginAcctAlreadyInUseException (LoginAcctAlreadyInUseException exception, HttpServletRequest request, HttpServletResponse response) throws IOException{
+        String viewName = "admin-add";
+        return commonResolve(viewName, exception, request, response);
     }
 
 
