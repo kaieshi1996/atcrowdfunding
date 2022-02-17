@@ -3,6 +3,7 @@ package com.atguigu.crowd.service.impl;
 import com.atguigu.crowd.entity.Admin;
 import com.atguigu.crowd.entity.AdminExample;
 import com.atguigu.crowd.exception.LoginAcctAlreadyInUseException;
+import com.atguigu.crowd.exception.LoginAcctAlreadyInUseForUpdateException;
 import com.atguigu.crowd.exception.LoginFailedException;
 import com.atguigu.crowd.mapper.AdminMapper;
 import com.atguigu.crowd.mvc.handler.TestHandler;
@@ -97,6 +98,24 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public void remove(Integer adminId) {
         adminMapper.deleteByPrimaryKey(adminId);
+    }
+
+    @Override
+    public Admin getAdminById(Integer adminId) {
+        return adminMapper.selectByPrimaryKey(adminId);
+    }
+
+    @Override
+    public void update(Admin admin) {
+        try{
+            adminMapper.updateByPrimaryKeySelective(admin);
+        }catch (Exception e){
+            // 用户名重复：
+            logger.info("异常全类名"+e.getClass().getName());
+            if (e instanceof DuplicateKeyException) {
+                throw new LoginAcctAlreadyInUseForUpdateException(CrowdConstant.MESSAGE_LOGIN_ACCT_ALREADY_IN_USE);
+            }
+        }
     }
 }
 

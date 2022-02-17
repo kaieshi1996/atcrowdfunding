@@ -69,6 +69,14 @@ public class CrowdTest {
     }
 
     @Test
+    public  void test3(){
+        Admin admin = new Admin(227,"Bobb",
+                "4297F44B13955235245B2497399D7A93",
+                "bb","c1996jj@gmail.com",null);
+        adminMapper.updateByPrimaryKey(admin);
+    }
+
+    @Test
     public void testCreateData(){
         Admin admin;
         for (int i = 0; i < 10; i++) {

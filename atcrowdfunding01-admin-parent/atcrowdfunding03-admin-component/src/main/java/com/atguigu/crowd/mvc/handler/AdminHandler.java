@@ -65,6 +65,22 @@ public class AdminHandler {
         return "redirect:/admin/get/page.do?pageNum="+Integer.MAX_VALUE;
     }
 
+    @RequestMapping("/admin/to/edit.do")
+    public String toEdit(@RequestParam("adminId") Integer adminId,ModelMap modelMap){
+        Admin admin = adminService.getAdminById(adminId);
+        modelMap.addAttribute("admin",admin);
+        return "admin-edit";
+    }
+
+    @RequestMapping(value = "/admin/update.do")
+    public String update(Admin admin,
+                         @RequestParam(value = "keyword",defaultValue = "") String keyword,
+                         @RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum){
+        System.out.println(admin);
+        adminService.update(admin);
+        return "redirect:/admin/get/page.do?pageNum="+pageNum+"&keyword="+keyword;
+    }
+
 
 
 
