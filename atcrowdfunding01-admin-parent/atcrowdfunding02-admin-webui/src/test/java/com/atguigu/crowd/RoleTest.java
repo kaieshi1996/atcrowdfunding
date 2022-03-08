@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 
 import javax.sql.DataSource;
+import java.util.HashMap;
 
 @SpringJUnitConfig(locations = {"classpath:spring-persist-tx.xml", "classpath:spring-persist-mybatis.xml"})
 public class RoleTest {
@@ -31,5 +32,6 @@ public class RoleTest {
             role = new Role(null,"role"+i);
             roleMapper.insert(role);
         }
+
     }
 }

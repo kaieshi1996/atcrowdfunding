@@ -56,6 +56,22 @@ public class Menu {
         return icon;
     }
 
+    public List<Menu> getChildren() {
+        return children;
+    }
+
+    public void setChildren(List<Menu> children) {
+        this.children = children;
+    }
+
+    public Boolean getOpen() {
+        return open;
+    }
+
+    public void setOpen(Boolean open) {
+        this.open = open;
+    }
+
     public void setIcon(String icon) {
         this.icon = icon == null ? null : icon.trim();
     }
