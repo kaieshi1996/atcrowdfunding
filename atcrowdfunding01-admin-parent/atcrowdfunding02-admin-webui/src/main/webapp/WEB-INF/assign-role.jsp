@@ -29,6 +29,15 @@
         $("#toLeftBtn").click(function () {
             $("select:eq(1)>option:selected").appendTo("select:eq(0)");
         });
+
+        $("#submitBtn").click(function () {
+            $("select:eq(1)>option").prop("selected","selected");
+
+            // 为了看到上面代码的效果， 暂时不让表单提交
+            // return false;
+        });
+
+
     })
 </script>
 <body>
@@ -65,14 +74,14 @@
                         </div>
                         <div class="form-group" style="margin-left:40px;">
                             <label>已分配角色列表</label><br>
-                            <select name="roleList" class="form-control" multiple="multiple" size="10" style="width:100px;overflow-y:auto;">
+                            <select name="roleIdList" class="form-control" multiple="multiple" size="10" style="width:100px;overflow-y:auto;">
                                 <c:forEach items="${requestScope.assignedRoleList}" var="role">
                                     <option value="${role.id}">${role.name }</option>
                                 </c:forEach>
                             </select>
                         </div>
                         <br/><br><br>
-                        <button type="submit" style="width: 150px;" class="btn btn-lg btn-success btn-block">提交</button>
+                        <button id="submitBtn" type="submit" style="width: 150px;" class="btn btn-lg btn-success btn-block">提交</button>
                     </form>
                 </div>
             </div>

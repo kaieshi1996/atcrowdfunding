@@ -233,4 +233,13 @@
       create_time = #{createTime,jdbcType=CHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <delete id="deleteOldRelationship">
+    delete from inner_admin_role where admin_id = #{adminId}
+  </delete>
+  
+  <insert id="insertNewRelationship">
+    insert into inner_admin_role(admin_id, role_id) VALUES
+    <foreach collection="roleIdList" item="roleId" separator=",">(#{adminId},#{roleId})</foreach>
+  </insert>
 </mapper>
